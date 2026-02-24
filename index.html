@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Database Film</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎬 Database Film</h1>
+            <p class="subtitle">Cerca e salva i tuoi film preferiti</p>
+            <nav class="navigation">
+                <a href="index.html" class="nav-link active">🔍 Cerca Film</a>
+                <a href="preferiti.html" class="nav-link">⭐ I Miei Preferiti</a>
+            </nav>
+        </header>
+
+        <!-- BARRA RICERCA -->
+        <div class="search-section">
+            <input type="text" id="searchInput" class="search-bar" placeholder="Cerca un film (es: Matrix, Inception, Titanic)...">
+            <button id="searchBtn" class="search-btn">Cerca</button>
+        </div>
+
+        <!-- TABELLA FILM - Da popolare dinamicamente con JS -->
+        <div id="resultsSection" class="results-section nascosto">
+            <h2>Risultati della Ricerca</h2>
+            <table id="moviesTable">
+                <thead>
+                    <tr>
+                        <th>Poster</th>
+                        <th>Titolo</th>
+                        <th>Anno</th>
+                        <th>Tipo</th>
+                        <th>Azioni</th>
+                    </tr>
+                </thead>
+                <tbody id="moviesTableBody">
+                    <!-- Le righe dei film verranno inserite qui -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- MESSAGGIO -->
+        <div id="message" class="message nascosto"></div>
+    </div>
+
+    <script src="index.js"></script>
+</body>
+</html>

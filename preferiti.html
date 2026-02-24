@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>I Miei Preferiti</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>⭐ I Miei Preferiti</h1>
+            <p class="subtitle">La tua collezione personale di film</p>
+            <nav class="navigation">
+                <a href="index.html" class="nav-link">🔍 Cerca Film</a>
+                <a href="preferiti.html" class="nav-link active">⭐ I Miei Preferiti</a>
+            </nav>
+        </header>
+
+        <!-- TABELLA PREFERITI -->
+        <div id="favoritesSection" class="results-section">
+            <table id="favoritesTable">
+                <thead>
+                    <tr>
+                        <th>Poster</th>
+                        <th>Titolo</th>
+                        <th>Anno</th>
+                        <th>Tipo</th>
+                        <th>Azioni</th>
+                    </tr>
+                </thead>
+                <tbody id="favoritesTableBody">
+                    <!-- Le righe dei film preferiti verranno inserite qui -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- MESSAGGIO -->
+        <div id="message" class="message nascosto"></div>
+    </div>
+
+    <script src="preferiti.js"></script>
+</body>
+</html>
