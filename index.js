@@ -54,12 +54,12 @@
  * Suggerimenti per l'implementazione:
  * - Usa fetch() per chiamare l'API con il termine di ricerca
  * - Usa data.Search per ottenere l'array di film
- * - Crea le righe della tabella dinamicamente con innerHTML o createElement)
+ * - Crea le righe della tabella dinamicamente con innerHTML o createElement
  * - Usa localStorage.setItem() e localStorage.getItem() per i preferiti
  * - Salva i preferiti come JSON: JSON.stringify() e JSON.parse()
  * - Salva almeno questi dati dei film (titolo, anno, imdbID, tipo, poster)
- * - Controlla se un film non è già nei preferiti prima di aggiungerlo (controlla con l'imdbID)
- * - Aggiungi event listener al pulsante di ricerca e all'input (per Enter)
+ * - Controlla se un film non è già nei preferiti prima di aggiungerlo (controlla usando filter e l'imdbID per identificare univocamente)
+ * - Aggiungi event listener al pulsante di ricerca (e all'input se vuoi fare Enter per cercare)
  * 
  * Bonus:
  * - Gestisci il caso in cui la chiave API non è stata inserita e mostra un messaggio di errore
