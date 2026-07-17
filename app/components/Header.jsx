@@ -10,18 +10,22 @@ import { NavLink } from 'react-router-dom';
 function Header() {
   return (
     <header>
-      <h1>🎬 Database Film</h1>
-      <p className="subtitle">Cerca e salva i tuoi film preferiti</p>
+      <div className="header-inner">
+        <div className="brand">
+          <h1>🎬 Database Film</h1>
+          <p className="subtitle">Cerca e salva i tuoi film preferiti</p>
+        </div>
 
-      {/* NavLink aggiunge automaticamente la classe "active" alla voce corrente */}
-      <nav className="navigation">
-        <NavLink to="/" end className="nav-link">
-          🔍 Cerca Film
-        </NavLink>
-        <NavLink to="/preferiti" className="nav-link">
-          ⭐ I Miei Preferiti
-        </NavLink>
-      </nav>
+        {/* NavLink aggiunge automaticamente la classe "active" alla voce corrente */}
+        <nav className="navigation">
+          <NavLink to="/" end className="nav-link">
+            🔍 Cerca Film
+          </NavLink>
+          <NavLink to="/preferiti" className="nav-link">
+            ⭐ I Miei Preferiti
+          </NavLink>
+        </nav>
+      </div>
     </header>
   );
 }
