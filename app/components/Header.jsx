@@ -4,8 +4,12 @@ import { NavLink } from 'react-router-dom';
 /**
  * Header.jsx - Intestazione dell'app (componente pronto all'uso)
  *
- * Titolo, sottotitolo e barra di navigazione tra le pagine.
- * Estratto da App.jsx per avere un primo esempio di componente.
+ * Titolo, sottotitolo e barra di navigazione (Cerca / Preferiti), sempre
+ * visibile in cima alla pagina. Non riceve props: il contenuto è fisso.
+ *
+ * Il link "attivo" nella nav (quello evidenziato) non è gestito a mano:
+ * <NavLink>, di react-router-dom, aggiunge da solo la classe CSS "active"
+ * al link che corrisponde alla pagina corrente, guardando l'URL.
  */
 function Header() {
   return (

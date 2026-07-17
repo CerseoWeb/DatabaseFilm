@@ -4,7 +4,8 @@ import React from 'react';
  * Footer.jsx - Piè di pagina (componente pronto all'uso)
  *
  * Poche informazioni essenziali: da dove arrivano i dati e dove vengono
- * salvati i preferiti.
+ * salvati i preferiti. Non riceve props: il contenuto è fisso, tranne
+ * l'anno, calcolato al volo con new Date().getFullYear().
  */
 function Footer() {
   return (

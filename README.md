@@ -1,148 +1,173 @@
-# Database Film
+# 🎬 Database Film
 
-Questo è un progetto del corso JavaScript.
-Dovrai creare una pagina web per cercare film usando l'**API OMDb** e salvarli nei preferiti con **localStorage**.
+Progetto del corso JavaScript: una web app **React** per cercare film con
+l'**API OMDb** e salvarli nei preferiti con **localStorage**.
 
-Le funzionalità principali da implementare sono:
+Lo scheletro (routing, componenti grafici, stile, configurazione
+dell'editor) è già pronto e funzionante: l'app parte, si vede, si può
+navigare tra le pagine. Quello che manca è **la logica** — le chiamate
+all'API e la gestione dei preferiti — ed è quello che dovrai scrivere tu.
 
-1. **Ricerca film** - Usare `fetch` per cercare film per titolo
-2. **Mostrare i risultati in una tabella** - con poster, titolo, anno, tipo e pulsante "Aggiungi ai Preferiti"
-3. **Salvare nei preferiti** - Usare `localStorage` per salvare i film preferiti
-4. **Gestire i preferiti** - Disabilitare il pulsante se il film è già nei preferiti, e creare una pagina separata per visualizzare e rimuovere i preferiti
+## 📦 Cosa trovi già pronto
 
-## 🔑 Ottenere la Chiave API di OMDb
+- **Routing**: due pagine, "Cerca" (`/`) e "I Miei Preferiti"
+  (`/preferiti`), già collegate in [app/App.jsx](app/App.jsx).
+- **Componenti grafici pronti all'uso** in [app/components/](app/components/):
+  `Header`, `Footer`, `SearchBar`, `MovieTable`, `EmptyState`, `Message`.
+  Ogni file spiega nel commento in cima a cosa serve, quali props accetta
+  e include un esempio d'uso — apriteli prima di scrivere codice nuovo,
+  molto probabilmente il pezzo di interfaccia che vi serve esiste già.
+- **Stile** già scritto in [app/App.css](app/App.css): non serve toccarlo.
+- **Editor configurato**: autocompletamento, auto-import dei componenti,
+  formattazione automatica al salvataggio e avvio automatico del progetto
+  aprendo la cartella in VS Code (vedi [Come iniziare](#-come-iniziare)).
 
-Prima di iniziare, devi ottenere una **chiave API gratuita** da OMDb.
+Il tuo compito **non è costruire l'interfaccia**, ma collegarci dietro la
+logica mancante.
 
-### Passaggi per ottenere la chiave:
+## 🧩 Cosa devi fare tu
+
+Sono 4 file, ognuno pieno di commenti `TODO` che spiegano passo passo cosa
+scrivere:
+
+1. [scripts/omdbApi.js](scripts/omdbApi.js) — chiamare l'API OMDb e restituire i risultati
+2. [scripts/preferiti.js](scripts/preferiti.js) — leggere/scrivere i preferiti in `localStorage`
+3. [app/pages/Cerca.jsx](app/pages/Cerca.jsx) — collegare la ricerca e il pulsante "Aggiungi ai Preferiti"
+4. [app/pages/Preferiti.jsx](app/pages/Preferiti.jsx) — mostrare e rimuovere i preferiti salvati
+
+Più avanti trovi l'[ordine consigliato](#️-percorso-consigliato) per
+affrontarli.
+
+## 🚀 Come iniziare
+
+### 1. Ottieni il codice
+
+Come da indicazioni del corso: fai il **fork** di
+[questo repository](https://github.com/CerseoWeb/DatabaseFilm) (oppure
+crea una tua repository e caricaci i file), poi clonalo sul tuo computer e
+apri la cartella con VS Code.
+
+### 2. Avvia il progetto
+
+Aprendo la cartella con VS Code, la prima volta comparirà una notifica
+tipo _"Questa cartella contiene task automatici"_: premi **Consenti**
+(**Allow**). A quel punto VS Code farà da solo `npm install` e poi
+`npm run dev`, aprendo un terminale con l'indirizzo locale
+(`http://localhost:5173` circa) da aprire nel browser.
+
+Se preferisci farlo a mano, o non stai usando VS Code, da terminale:
+
+```bash
+npm install
+npm run dev
+```
+
+A questo punto l'app **parte già**, solo che cercando un film non succede
+ancora nulla: è normale, è il pezzo che manca e che scriverai tu.
+
+### 3. Ottieni la chiave API di OMDb
+
+Prima di iniziare a scrivere `scripts/omdbApi.js`, ti serve una **chiave
+API gratuita**.
 
 1. **Vai sul sito OMDb**: http://www.omdbapi.com/apikey.aspx
-2. **Scegli il piano FREE (Gratis)**: seleziona _"FREE! (1,000 daily limit)"_ che ti permette di fare 1000 richieste al giorno senza pagare. Non è necessario inserire i dati della carta di credito.
-3. **Compila il Form** con dei dati:
-   - **Email Address**: il tuo indirizzo email (DEVE ESSERE VALIDO, riceverai un'email)
-   - **First Name**: il tuo nome (puoi mettere un nome fittizio se vuoi)
-   - **Last Name**: il tuo cognome (anche questo può essere fittizio)
-   - **Use**: metti "Learning JavaScript" o qualcosa di simile
-   - Premi il pulsante "Submit" per inviare la richiesta
-4. **Controlla la Email**: riceverai un'email da OMDb con il soggetto "OMDb API - Free API Key". Se non la vedi, controlla la cartella spam o posta indesiderata. Qui troverai un link per attivare la tua chiave API e la tua chiave API stessa. Nota che se non attivi la chiave cliccando sul link, non funzionerà!
-
-5. **Copia la Chiave API**: dopo aver cliccato sul link di attivazione, vedrai la tua chiave API (è una stringa alfanumerica tipo `abc12345`). Copia questa chiave e incollala nel file `script.js` alla riga dove c'è la costante `API_KEY`.
+2. **Scegli il piano FREE (Gratis)**: seleziona _"FREE! (1,000 daily limit)"_, permette 1000 richieste al giorno senza pagare e senza carta di credito.
+3. **Compila il Form**:
+   - **Email Address**: un indirizzo valido (riceverai un'email)
+   - **First Name / Last Name**: anche fittizi va bene
+   - **Use**: "Learning JavaScript" o simile
+4. **Controlla la Email**: arriva un'email "OMDb API - Free API Key" (controlla anche lo spam) con un link di attivazione e la chiave. **Se non clicchi il link di attivazione, la chiave non funziona.**
+5. **Incolla la chiave** in [scripts/omdbApi.js](scripts/omdbApi.js), alla riga:
 
    ```javascript
-   const API_KEY = 'abc12345'; // <-- Sostituisci con la tua chiave
+   const API_KEY = 'TUA_CHIAVE_API_QUI'; // <-- sostituisci con la tua chiave
    ```
 
-### Come Funziona l'API OMDb
+## 🗺️ Percorso consigliato
 
-URL Base
+L'ordine qui sotto è pensato per farti vedere qualcosa che funziona il
+prima possibile, invece di scrivere codice "alla cieca" senza controllare
+se è giusto. Due fasi, ognuna finisce con un risultato che puoi vedere nel
+browser.
 
-```
-http://www.omdbapi.com/
-```
+### Fase 1 — la ricerca
 
-Cercare Film per Titolo
+1. **[scripts/omdbApi.js](scripts/omdbApi.js)** → implementa `searchMovies(termine)` (fetch all'API + `.json()` + restituire `data.Search`).
+2. **[app/pages/Cerca.jsx](app/pages/Cerca.jsx)** → nel `TODO` di `handleCerca`, chiama `searchMovies(query)` e passa il risultato a `setRisultati`.
 
-```
-http://www.omdbapi.com/?apikey=TUA_CHIAVE&s=matrix
-```
+✅ **Dove lo vedi**: scrivi "matrix" nella barra di ricerca, premi Cerca, e
+la tabella si riempie con i film veri restituiti dall'API.
 
-**Parametri**:
+### Fase 2 — i preferiti
 
-- `apikey`: la tua chiave API
-- `s`: termine di ricerca (search)
+3. **[scripts/preferiti.js](scripts/preferiti.js)** → implementa tutte e cinque le funzioni (`getPreferiti`, `salvaPreferiti`, `aggiungiPreferito`, `rimuoviPreferito`, `isPreferito`).
+4. **[app/pages/Cerca.jsx](app/pages/Cerca.jsx)** → nel `TODO` di `handleAggiungi`, chiama `aggiungiPreferito(film)`.
+5. **[app/pages/Preferiti.jsx](app/pages/Preferiti.jsx)** → nel `TODO` dentro `useEffect`, chiama `getPreferiti()` e passa il risultato a `setPreferiti`; nel `TODO` di `handleRimuovi`, chiama `rimuoviPreferito(imdbID)` e aggiorna lo stato.
 
-**Esempio di Risposta**:
+✅ **Dove lo vedi**: cerchi un film, premi "Aggiungi ai Preferiti" (il
+pulsante si disabilita da solo), vai su "I Miei Preferiti" e lo trovi lì;
+premi "Rimuovi" e sparisce.
 
-```json
-{
-  "Search": [
-    {
-      "Title": "The Matrix",
-      "Year": "1999",
-      "imdbID": "tt0133093",
-      "Type": "movie",
-      "Poster": "https://..."
-    },
-    {
-      "Title": "The Matrix Reloaded",
-      "Year": "2003",
-      "imdbID": "tt0234215",
-      "Type": "movie",
-      "Poster": "https://..."
-    }
-  ],
-  "totalResults": "12",
-  "Response": "True"
-}
-```
+### Bonus (facoltativi, quando hai finito il resto)
 
-**Cosa Fare nel Codice**:
+- `getMovieDetails(imdbID)` in `omdbApi.js`, per recuperare la trama completa di un film
+- Un pulsante "Rimuovi Tutti" nella pagina Preferiti
+- Un contatore "Hai N film salvati"
 
-1. Costruisci l'URL con la chiave API e il termine di ricerca
-2. Fai un `fetch()` all'URL
-3. Usa l'array `Search` per mostrare i film
+## 👥 Lavorare in gruppo
 
-## Come Iniziare
+Se siete in più persone, ci sono **due percorsi indipendenti** che si
+possono fare in parallelo, perché non condividono codice:
 
-Per iniziare il progetto ci sono due strade:
+| Persona/coppia A — "Ricerca" | Persona/coppia B — "Preferiti" |
+| ---------------------------- | ------------------------------ |
+| `scripts/omdbApi.js`         | `scripts/preferiti.js`         |
+| (bonus: `getMovieDetails`)   | `app/pages/Preferiti.jsx`      |
 
-1. **Fork** del repository base. Lo trovate [qui](https://github.com/CerseoWeb/DatabaseFilm) e potete fare un fork per avere una copia personale su cui lavorare.
+Attenzione a un solo punto di contatto: **`app/pages/Cerca.jsx`** contiene
+sia il `TODO` di `handleCerca` (ramo Ricerca) sia quello di
+`handleAggiungi` (ramo Preferiti) — sono due funzioni diverse nello stesso
+file. Per non pestarvi i piedi: lavorate su due branch Git separati e
+mettetevi d'accordo su chi fa merge per primo, oppure completate prima
+`handleCerca` insieme e poi dividetevi.
 
-2. **Creare una nuova repository** seguendo i passaggi qui sotto (consigliato per chi vuole fare tutto da zero e imparare il workflow completo di GitHub).
-   - **Nuova Repo**: Vai su [github.com](https://github.com) e crea una nuova repository (In alto un pulsante "+" e poi "New Repository"), con Repository Name: `DatabaseFilm`, Description: "Progetto Database Film per corso Web", Public, Initialize with README (opzionale).
-   - **Aggiungi Files**: Dopo aver creato la repo, puoi aggiungere i file `index.html`, `style.css`, `script.js` e `README.md` direttamente da GitHub (usando il tasto "+" (vicino a "Code") → "Upload files". Nella pagina di upload, trascina i file o selezionali dal tuo computer, poi scrolla in basso e fai commit dei file con un messaggio chiaro come "Add initial project files".
+## 💡 Suggerimenti per l'implementazione
 
-A questo punto possiamo iniziare a lavorare localmente con VSCode e GitHub:
-
-**Clona**: Copia l'URL della repo (es: `https://github.com/[tuonome]/DatabaseFilm.git`) e clonala localmente usando Git o direttamente dentro VSCode.
-
-**VSCode**: Da dentro vs code, apri la cartella del progetto se non già fatto.\
-_NOTA_: Prima di iniziare, assicurati di aver fatto il login a GitHub da VSCode, in modo da poter fare commit e push direttamente dall'editor.
-
-**Ottieni la Chiave API**: Segui i passaggi sopra per ottenere la tua chiave OMDb (se non l'hai già fatto) e inseriscila in `script.js` prima di fare il commit iniziale.
-
-## 💡 Suggerimenti per l'Implementazione
-
-1. **Usa `fetch()` per chiamare l'API**: costruisci l'URL con la chiave API e il termine di ricerca, poi usa `fetch()` per ottenere i dati. Nella costruzione dell'URL, assicurati di includere tutti i parametri necessari. _**ATTENZIONE**_ ai nomi delle proprietà che sono maiuscole negli oggetti restituiti dall'API (es. `Title`, `Year`, `imdbID`, `Type`, `Poster`).
-
-2. **Gestisci i Poster Mancanti**: se il campo `Poster` è "N/A", mostra un'immagine di placeholder invece del poster del film. Puoi usare un'immagine generica come questa: `https://via.placeholder.com/60x90?text=No+Poster`.
-
-3. **Crea le Righe della Tabella**: per ogni film nei risultati, crea una riga nella tabella con il poster, titolo, anno, tipo e un pulsante "Aggiungi ai Preferiti". Usa `innerHTML` per inserire i dati dinamicamente. Puoi anche aggiungere una classe CSS al pulsante per poterlo stilizzare e gestire più facilmente. Inoltre consiglio di spezzare la creazione della riga in una funzione separata rispetto alla creazione della tabella, in modo da mantenere il codice più organizzato.
-
-4. **Salvare nei Preferiti**: quando l'utente clicca su "Aggiungi ai Preferiti", salva il film in un array di preferiti e poi salva questo array in `localStorage` usando `JSON.stringify()`. Assicurati di gestire i casi in cui `localStorage` è vuoto (devi inizializzare l'array) e di non aggiungere duplicati (controlla con l'imdbID).
-
-5. **Gestire i Preferiti**: nella pagina `preferiti.html`, recupera i preferiti da `localStorage` usando `JSON.parse()`, e mostra la tabella dei preferiti. Aggiungi un pulsante "Rimuovi" per ogni film che, quando cliccato, rimuove il film dai preferiti e aggiorna la visualizzazione. Puoi usare `array.splice()` per rimuovere l'elemento dall'array dei preferiti in base all'indice, oppure `array.filter()` per creare un nuovo array senza il film da rimuovere.
+1. **`fetch()` verso OMDb**: costruisci l'URL con chiave API e termine di ricerca, poi `fetch()` + `.json()`. Attenzione ai nomi delle proprietà restituite dall'API, sono con la maiuscola (`Title`, `Year`, `imdbID`, `Type`, `Poster`).
+2. **Poster mancanti**: se `Poster` è `"N/A"`, mostra un placeholder invece dell'URL rotto (es. `https://via.placeholder.com/60x90?text=No+Poster`).
+3. **Niente `innerHTML`**: qui siamo in React, le righe della tabella le genera già `<MovieTable />` con `.map()` — a te serve solo passargli l'array di film giusto.
+4. **`localStorage` salva solo stringhe**: usa `JSON.stringify()` per scrivere e `JSON.parse()` per leggere. Gestisci il caso in cui non c'è ancora nulla salvato (`localStorage.getItem` restituisce `null`).
+5. **Niente duplicati nei preferiti**: prima di aggiungere un film, controlla che non ci sia già (confronta `imdbID`).
 
 ## 🐛 Debug
 
 ### La chiave API non funziona
 
 - Hai attivato la chiave cliccando sul link nell'email?
-- Hai copiato la chiave completa senza spazi?
-- Hai sostituito `'TUA_CHIAVE_API_QUI'` nel codice?
+- Hai copiato la chiave completa, senza spazi?
+- Hai sostituito `'TUA_CHIAVE_API_QUI'` in `scripts/omdbApi.js`?
 
 ### I film non si vedono
 
-- Apri la Console (F12)
-- Cerca errori di rete (tab Network)
-- Verifica che l'URL sia corretto
-- Testa l'URL direttamente nel browser
+- Apri la Console del browser (F12) e guarda se ci sono errori
+- Guarda la tab Network: la richiesta a `omdbapi.com` parte? Che risposta torna?
+- Prova l'URL della richiesta direttamente incollato nel browser
 
-### localStorage non funziona
+### `localStorage` non funziona
 
-- Controlla in DevTools → Application → Local Storage
-- Verifica di usare JSON.stringify() quando salvi
-- Verifica di usare JSON.parse() quando recuperi
+- DevTools → Application → Local Storage → controlla cosa c'è sotto la chiave `'preferiti'`
+- Hai usato `JSON.stringify()` quando salvi e `JSON.parse()` quando leggi?
 
-### I preferiti non si vedono
+### La pagina Preferiti resta vuota
 
-- Controlla che la chiave sia `'preferiti'` in entrambi i file
-- Verifica che `caricaPreferiti()` sia chiamata all'avvio
-- Usa console.log() per vedere cosa c'è in localStorage
+- `useEffect` in `Preferiti.jsx` ha l'array di dipendenze `[]`? Senza, o con dipendenze sbagliate, non parte al momento giusto.
+- `getPreferiti()` restituisce davvero l'array salvato, o hai lasciato il `return []` originale?
 
-## Risorse Utili
+## 📚 Risorse utili
 
 - [OMDb API Documentation](http://www.omdbapi.com/)
 - [MDN - localStorage](https://developer.mozilla.org/it/docs/Web/API/Window/localStorage)
 - [MDN - Fetch API](https://developer.mozilla.org/it/docs/Web/API/Fetch_API)
 - [MDN - Array Methods](https://developer.mozilla.org/it/docs/Web/JavaScript/Reference/Global_Objects/Array)
+- [React - useState](https://react.dev/reference/react/useState)
+- [React - useEffect](https://react.dev/reference/react/useEffect)
