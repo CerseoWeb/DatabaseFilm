@@ -7,7 +7,7 @@
       "command": "npm install",
       "presentation": {
         "reveal": "always",
-        "panel": "dedicated",
+        "panel": "shared",
         "clear": true,
         "close": false
       },
@@ -26,7 +26,7 @@
       "presentation": {
         "reveal": "always",
         "focus": true,
-        "panel": "dedicated",
+        "panel": "shared",
         "clear": true,
         "close": false
       },
