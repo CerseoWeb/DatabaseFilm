@@ -19,8 +19,8 @@
  */
 
 // TODO: sostituisci con la tua chiave API OMDb
-const API_KEY = 'TUA_CHIAVE_API_QUI'
-const BASE_URL = 'https://www.omdbapi.com/'
+const API_KEY = 'TUA_CHIAVE_API_QUI';
+const BASE_URL = 'https://www.omdbapi.com/';
 
 /**
  * Cerca film per titolo tramite l'API OMDb.
@@ -35,7 +35,7 @@ const BASE_URL = 'https://www.omdbapi.com/'
  */
 export async function searchMovies(termine) {
   // TODO: implementare la chiamata fetch e restituire l'array dei risultati
-  return []
+  return [];
 }
 
 /**
@@ -47,5 +47,5 @@ export async function searchMovies(termine) {
  */
 export async function getMovieDetails(imdbID) {
   // TODO: implementare la chiamata fetch per i dettagli
-  return null
+  return null;
 }

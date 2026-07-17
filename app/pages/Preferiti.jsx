@@ -19,15 +19,15 @@
  * - Mostrare il numero totale di preferiti
  * - Aggiungere un pulsante "Rimuovi Tutti"
  */
-import React, { useState, useEffect } from 'react'
-import { getPreferiti, rimuoviPreferito } from '../../scripts/preferiti.js'
+import React, { useState, useEffect } from 'react';
+import { getPreferiti, rimuoviPreferito } from '../../scripts/preferiti.js';
 
 function Preferiti() {
-  const [preferiti, setPreferiti] = useState([])
+  const [preferiti, setPreferiti] = useState([]);
 
   useEffect(() => {
     // TODO: caricare i preferiti con getPreferiti() e salvarli con setPreferiti(...)
-  }, [])
+  }, []);
 
   function handleRimuovi(imdbID) {
     // TODO: chiamare rimuoviPreferito(imdbID) e aggiornare lo stato `preferiti`
@@ -41,7 +41,7 @@ function Preferiti() {
         <h3>Nessun film nei preferiti</h3>
         <p>Vai alla ricerca e aggiungi i tuoi film preferiti!</p>
       </div>
-    )
+    );
   }
 
   return (
@@ -76,7 +76,7 @@ function Preferiti() {
         </tbody>
       </table>
     </div>
-  )
+  );
 }
 
-export default Preferiti
+export default Preferiti;

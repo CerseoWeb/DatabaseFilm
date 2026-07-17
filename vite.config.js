@@ -1,4 +1,4 @@
-import { defineConfig } from 'vite'
+import { defineConfig } from 'vite';
 
 // Configurazione minimale di Vite.
 // esbuild (integrato in Vite) trasforma automaticamente i file .jsx,
@@ -8,4 +8,4 @@ export default defineConfig({
   esbuild: {
     jsx: 'transform',
   },
-})
+});

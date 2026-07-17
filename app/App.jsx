@@ -9,10 +9,10 @@
  * Per aggiungere una nuova pagina: creala in app/pages/, importala qui e
  * aggiungi una nuova <Route> dentro <Routes>.
  */
-import React from 'react'
-import { NavLink, Routes, Route } from 'react-router-dom'
-import Cerca from './pages/Cerca.jsx'
-import Preferiti from './pages/Preferiti.jsx'
+import React from 'react';
+import { NavLink, Routes, Route } from 'react-router-dom';
+import Cerca from './pages/Cerca.jsx';
+import Preferiti from './pages/Preferiti.jsx';
 
 function App() {
   return (
@@ -23,8 +23,12 @@ function App() {
 
         {/* NavLink aggiunge automaticamente la classe "active" alla voce corrente */}
         <nav className="navigation">
-          <NavLink to="/" end className="nav-link">🔍 Cerca Film</NavLink>
-          <NavLink to="/preferiti" className="nav-link">⭐ I Miei Preferiti</NavLink>
+          <NavLink to="/" end className="nav-link">
+            🔍 Cerca Film
+          </NavLink>
+          <NavLink to="/preferiti" className="nav-link">
+            ⭐ I Miei Preferiti
+          </NavLink>
         </nav>
       </header>
 
@@ -33,7 +37,7 @@ function App() {
         <Route path="/preferiti" element={<Preferiti />} />
       </Routes>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

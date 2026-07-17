@@ -9,7 +9,7 @@
  * Di ogni film conviene salvare almeno: Title, Year, imdbID, Type, Poster.
  */
 
-const STORAGE_KEY = 'preferiti'
+const STORAGE_KEY = 'preferiti';
 
 /**
  * Legge i preferiti da localStorage.
@@ -20,7 +20,7 @@ const STORAGE_KEY = 'preferiti'
  */
 export function getPreferiti() {
   // TODO: implementare la lettura da localStorage
-  return []
+  return [];
 }
 
 /**
@@ -69,5 +69,5 @@ export function rimuoviPreferito(imdbID) {
  */
 export function isPreferito(imdbID) {
   // TODO: implementare il controllo
-  return false
+  return false;
 }

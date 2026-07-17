@@ -20,16 +20,16 @@
  * - Gestisci il caso "nessun risultato" e gli errori dell'API
  * - Se il Poster è "N/A", mostra un placeholder
  */
-import React, { useState } from 'react'
-import { searchMovies } from '../../scripts/omdbApi.js'
-import { aggiungiPreferito, isPreferito } from '../../scripts/preferiti.js'
+import React, { useState } from 'react';
+import { searchMovies } from '../../scripts/omdbApi.js';
+import { aggiungiPreferito, isPreferito } from '../../scripts/preferiti.js';
 
 function Cerca() {
-  const [query, setQuery] = useState('')
-  const [risultati, setRisultati] = useState([])
+  const [query, setQuery] = useState('');
+  const [risultati, setRisultati] = useState([]);
 
   async function handleCerca(e) {
-    e.preventDefault()
+    e.preventDefault();
     // TODO: chiamare searchMovies(query) e salvare l'array in setRisultati
     // TODO: gestire "nessun film trovato" ed eventuali errori
   }
@@ -49,7 +49,9 @@ function Cerca() {
           value={query}
           onChange={(e) => setQuery(e.target.value)}
         />
-        <button type="submit" className="search-btn">Cerca</button>
+        <button type="submit" className="search-btn">
+          Cerca
+        </button>
       </form>
 
       {/* TABELLA RISULTATI: mostrata solo se ci sono risultati */}
@@ -91,7 +93,7 @@ function Cerca() {
         </div>
       )}
     </>
-  )
+  );
 }
 
-export default Cerca
+export default Cerca;

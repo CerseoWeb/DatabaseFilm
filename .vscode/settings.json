@@ -1,0 +1,43 @@
+{
+  // --- IntelliSense JS/JSX (punto 1) ---
+  "js/ts.suggest.autoImports": true,
+  "js/ts.preferences.importModuleSpecifier": "relative",
+  "js/ts.updateImportsOnFileMove.enabled": "always",
+  "js/ts.suggest.completeFunctionCalls": true,
+
+  // Fa funzionare l'espansione Emmet (es. div.container + Tab) anche nei file .jsx/.js
+  "emmet.includeLanguages": {
+    "javascript": "javascriptreact"
+  },
+  "emmet.triggerExpansionOnTab": true,
+
+  // --- Auto-import componenti (punto 2) ---
+  // Con jsconfig.json + @types/react installati, VS Code propone l'import
+  // automatico appena inizi a scrivere <NomeComponente ... e lo inserisce
+  // in cima al file quando accetti il suggerimento.
+  "editor.quickSuggestions": {
+    "other": true,
+    "comments": false,
+    "strings": false
+  },
+
+  // --- Format & salvataggio automatico (punto 3) ---
+  "files.autoSave": "onFocusChange",
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[css]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
+}

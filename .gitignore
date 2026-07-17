@@ -11,5 +11,3 @@ npm-debug.log*
 
 # File di sistema / editor
 .DS_Store
-.vscode/*
-!.vscode/extensions.json
