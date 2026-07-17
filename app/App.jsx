@@ -25,6 +25,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Cerca />} />
           <Route path="/preferiti" element={<Preferiti />} />
+          {/* ESERCIZIO EXTRA: manca la route per la pagina di dettaglio di
+              un singolo film - vedi app/pages/Dettaglio.jsx. */}
         </Routes>
       </main>
 

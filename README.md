@@ -13,7 +13,8 @@ all'API e la gestione dei preferiti — ed è quello che dovrai scrivere tu.
 - **Routing**: due pagine, "Cerca" (`/`) e "I Miei Preferiti"
   (`/preferiti`), già collegate in [app/App.jsx](app/App.jsx).
 - **Componenti grafici pronti all'uso** in [app/components/](app/components/):
-  `Header`, `Footer`, `SearchBar`, `MovieTable`, `EmptyState`, `Message`.
+  `Header`, `Footer`, `SearchBar`, `MovieTable`, `EmptyState`, `Message`,
+  `FilmDetail` (quest'ultimo serve solo per l'esercizio extra).
   Ogni file spiega nel commento in cima a cosa serve, quali props accetta
   e include un esempio d'uso — apriteli prima di scrivere codice nuovo,
   molto probabilmente il pezzo di interfaccia che vi serve esiste già.
@@ -36,7 +37,9 @@ scrivere:
 4. [app/pages/Preferiti.jsx](app/pages/Preferiti.jsx) — mostrare e rimuovere i preferiti salvati
 
 Più avanti trovi l'[ordine consigliato](#️-percorso-consigliato) per
-affrontarli.
+affrontarli. C'è anche un [esercizio extra](#-esercizio-extra-pagina-di-dettaglio)
+(pagina di dettaglio del singolo film) per chi finisce prima e vuole
+mettersi alla prova con qualcosa di più aperto.
 
 ## 🚀 Come iniziare
 
@@ -110,9 +113,45 @@ premi "Rimuovi" e sparisce.
 
 ### Bonus (facoltativi, quando hai finito il resto)
 
-- `getMovieDetails(imdbID)` in `omdbApi.js`, per recuperare la trama completa di un film
 - Un pulsante "Rimuovi Tutti" nella pagina Preferiti
 - Un contatore "Hai N film salvati"
+
+## 🎁 Esercizio extra: pagina di dettaglio
+
+Quando hai finito le due fasi sopra, il sito fa solo due cose: cerca film
+e li salva nei preferiti. Manca un pezzo classico di qualunque sito di
+questo tipo: cliccare su un film e vederne la scheda completa (trama,
+regista, cast...). A differenza degli esercizi precedenti, qui non ti do
+solo dei `TODO` dentro un file già collegato al resto: **tocca a te
+costruire il collegamento tra i pezzi**, oltre alla logica.
+
+Il componente che disegna la scheda, [FilmDetail.jsx](app/components/FilmDetail.jsx),
+è già pronto (uguale agli altri componenti in `app/components/`). Quello
+che manca è tutto il resto:
+
+1. **Una route** in [app/App.jsx](app/App.jsx) per la nuova pagina (c'è un
+   commento che indica dove) — dovrà sapere QUALE film mostrare, quindi
+   dovrà leggere quell'informazione dall'URL stesso.
+2. **Un modo per raggiungerla** cliccando da qualche parte
+   dell'interfaccia — c'è un commento anche in
+   [app/components/MovieTable.jsx](app/components/MovieTable.jsx). Fallo
+   lì e non separatamente in `Cerca.jsx`/`Preferiti.jsx`: essendo
+   `MovieTable` condivisa da entrambe le pagine, lo scrivi una volta sola
+   e funziona ovunque.
+3. **[app/pages/Dettaglio.jsx](app/pages/Dettaglio.jsx)** — la nuova
+   pagina, con i suoi `TODO` (spiegati nel commento in cima al file):
+   recuperare l'id del film dall'URL e usarlo per caricare i dettagli
+   dall'API (`getMovieDetails` in
+   [scripts/omdbApi.js](scripts/omdbApi.js) — se non l'hai già fatto come
+   bonus della Fase 1, implementalo ora).
+
+✅ **Dove lo vedi**: clicchi sul titolo di un film (dai risultati o dai
+preferiti) e si apre una pagina con tutti i suoi dettagli.
+
+**Bonus nel bonus**: [FilmDetail.jsx](app/components/FilmDetail.jsx) per
+ora mostra solo i dettagli, non permette di aggiungere il film ai
+preferiti da lì. C'è un commento dentro al file che ti invita a provarci,
+riusando quello che hai già scritto per `Cerca.jsx`.
 
 ## 👥 Lavorare in gruppo
 
@@ -171,3 +210,5 @@ mettetevi d'accordo su chi fa merge per primo, oppure completate prima
 - [MDN - Array Methods](https://developer.mozilla.org/it/docs/Web/JavaScript/Reference/Global_Objects/Array)
 - [React - useState](https://react.dev/reference/react/useState)
 - [React - useEffect](https://react.dev/reference/react/useEffect)
+- [React Router - useParams](https://reactrouter.com/api/hooks/useParams) (per l'esercizio extra)
+- [React Router - Link](https://reactrouter.com/api/components/Link) (per l'esercizio extra)

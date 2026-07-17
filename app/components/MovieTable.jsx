@@ -70,7 +70,12 @@ function MovieTable({
               <td>
                 <img className="movie-poster" src={f.Poster} alt={f.Title} />
               </td>
-              <td>{f.Title}</td>
+              <td>
+                {f.Title}
+                {/* ESERCIZIO EXTRA: il titolo potrebbe collegarsi alla
+                    pagina di dettaglio di questo film - vedi
+                    app/pages/Dettaglio.jsx. */}
+              </td>
               <td>{f.Year}</td>
               <td>{f.Type}</td>
               <td>

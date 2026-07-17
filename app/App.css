@@ -358,6 +358,51 @@ tbody tr:last-child td {
   color: var(--color-text-muted);
 }
 
+/* Film Detail (componente <FilmDetail />, esercizio extra) */
+.film-detail {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  background: var(--color-surface);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  padding: 24px;
+}
+
+.film-detail-poster {
+  width: 220px;
+  max-width: 100%;
+  border-radius: var(--radius-sm);
+  box-shadow: 0 4px 10px rgba(15, 23, 42, 0.18);
+  align-self: flex-start;
+}
+
+.film-detail-info {
+  flex: 1;
+  min-width: 240px;
+}
+
+.film-detail-info h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.film-detail-year {
+  color: var(--color-text-muted);
+  font-weight: 400;
+}
+
+.film-detail-meta {
+  color: var(--color-text-muted);
+  margin-bottom: 16px;
+}
+
+.film-detail-plot {
+  margin-bottom: 16px;
+  line-height: 1.6;
+}
+
 /* Footer (componente <Footer />) */
 .app-footer {
   text-align: center;

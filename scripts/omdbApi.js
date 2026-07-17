@@ -39,7 +39,10 @@ export async function searchMovies(termine) {
 }
 
 /**
- * (Opzionale / Bonus) Recupera i dettagli completi di un film dal suo imdbID.
+ * Recupera i dettagli completi di un film dal suo imdbID (poster, trama,
+ * regista, cast, voto...). Serve per l'esercizio extra "pagina di
+ * dettaglio" (vedi app/pages/Dettaglio.jsx) - se non fai quell'esercizio,
+ * puoi anche lasciarla così.
  * @param {string} imdbID - Identificatore univoco del film
  * @returns {Promise<Object|null>} L'oggetto con i dettagli del film
  *
