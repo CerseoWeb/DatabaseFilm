@@ -22,9 +22,19 @@
   },
 
   // --- Format & salvataggio automatico (punto 3) ---
-  "files.autoSave": "onFocusChange",
   "editor.formatOnSave": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
+
+  "files.autoSave": "onFocusChange",
+  "files.exclude": {
+    "node_modules/": true,
+    "dist/": true,
+    "*prettier*": true,
+    "vite.config.js": true,
+    "jsconfig.json": true,
+    ".gitignore": true
+  },
+
   "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },

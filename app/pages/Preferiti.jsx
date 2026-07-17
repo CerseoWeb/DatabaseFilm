@@ -1,8 +1,17 @@
+import React, { useState, useEffect } from 'react';
+import { getPreferiti, rimuoviPreferito } from '../../scripts/preferiti.js';
+import EmptyState from '../components/EmptyState.jsx';
+import MovieTable from '../components/MovieTable.jsx';
+
 /**
  * Preferiti.jsx - Pagina dei film preferiti (SCHELETRO da completare)
  *
  * Versione React della logica che nel progetto vanilla era in preferiti.js.
  * Mostra i film salvati in localStorage e permette di rimuoverli.
+ *
+ * Componenti già pronti da usare (vedi app/components/):
+ * - <EmptyState /> messaggio quando non ci sono ancora preferiti
+ * - <MovieTable />  tabella dei film con colonna "Azioni" personalizzabile
  *
  * ========================================
  * FUNZIONALITÀ DA IMPLEMENTARE:
@@ -19,9 +28,6 @@
  * - Mostrare il numero totale di preferiti
  * - Aggiungere un pulsante "Rimuovi Tutti"
  */
-import React, { useState, useEffect } from 'react';
-import { getPreferiti, rimuoviPreferito } from '../../scripts/preferiti.js';
-
 function Preferiti() {
   const [preferiti, setPreferiti] = useState([]);
 
@@ -36,46 +42,22 @@ function Preferiti() {
   // Stato vuoto: nessun film salvato
   if (preferiti.length === 0) {
     return (
-      <div className="empty-state">
-        <div className="empty-state-icon">⭐</div>
-        <h3>Nessun film nei preferiti</h3>
-        <p>Vai alla ricerca e aggiungi i tuoi film preferiti!</p>
-      </div>
+      <EmptyState
+        icona="⭐"
+        titolo="Nessun film nei preferiti"
+        testo="Vai alla ricerca e aggiungi i tuoi film preferiti!"
+      />
     );
   }
 
   return (
-    <div className="results-section">
-      <h2>I Miei Preferiti</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>Poster</th>
-            <th>Titolo</th>
-            <th>Anno</th>
-            <th>Tipo</th>
-            <th>Azioni</th>
-          </tr>
-        </thead>
-        <tbody>
-          {preferiti.map((film) => (
-            <tr key={film.imdbID}>
-              <td>
-                <img className="movie-poster" src={film.Poster} alt={film.Title} />
-              </td>
-              <td>{film.Title}</td>
-              <td>{film.Year}</td>
-              <td>{film.Type}</td>
-              <td>
-                <button className="btn btn-remove" onClick={() => handleRimuovi(film.imdbID)}>
-                  Rimuovi
-                </button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
+    <MovieTable
+      titolo="I Miei Preferiti"
+      film={preferiti}
+      azioneLabel="Rimuovi"
+      azioneClasse="btn btn-remove"
+      onAzione={(film) => handleRimuovi(film.imdbID)}
+    />
   );
 }
 

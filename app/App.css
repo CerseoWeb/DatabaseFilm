@@ -26,7 +26,7 @@ body {
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
 }
 
-/* Header */
+/* Header (componente <Header />) */
 header {
   text-align: center;
   margin-bottom: 30px;
@@ -75,7 +75,7 @@ header h1 {
   color: white;
 }
 
-/* Search Section */
+/* Search Section (componente <SearchBar />) */
 .search-section {
   display: flex;
   gap: 10px;
@@ -112,7 +112,7 @@ header h1 {
   background: #5568d3;
 }
 
-/* Results Section */
+/* Results Section (componente <MovieTable />) */
 .results-section {
   margin-top: 30px;
 }
@@ -199,7 +199,7 @@ tbody tr:last-child td {
   background: #c82333;
 }
 
-/* Message */
+/* Message (componente <Message />) */
 .message {
   padding: 15px 20px;
   border-radius: 8px;
@@ -225,7 +225,7 @@ tbody tr:last-child td {
   border: 1px solid #bee5eb;
 }
 
-/* Empty State */
+/* Empty State (componente <EmptyState />) */
 .empty-state {
   text-align: center;
   padding: 60px 20px;

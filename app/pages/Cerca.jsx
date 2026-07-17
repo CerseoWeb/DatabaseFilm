@@ -1,9 +1,21 @@
+import React, { useState } from 'react';
+import { searchMovies } from '../../scripts/omdbApi.js';
+import { aggiungiPreferito, isPreferito } from '../../scripts/preferiti.js';
+import SearchBar from '../components/SearchBar.jsx';
+import MovieTable from '../components/MovieTable.jsx';
+import Message from '../components/Message.jsx';
+
 /**
  * Cerca.jsx - Pagina di ricerca film (SCHELETRO da completare)
  *
  * Versione React della logica che nel progetto vanilla era in index.js.
  * L'obiettivo è cercare film tramite l'API OMDb e mostrarli in una tabella,
  * con un pulsante per aggiungerli ai preferiti.
+ *
+ * Componenti già pronti da usare (vedi app/components/):
+ * - <SearchBar />   barra di ricerca (input + pulsante)
+ * - <MovieTable />  tabella dei film con colonna "Azioni" personalizzabile
+ * - <Message />     banner per messaggi di errore/info/successo
  *
  * ========================================
  * FUNZIONALITÀ DA IMPLEMENTARE:
@@ -17,21 +29,19 @@
  *
  * Suggerimenti:
  * - Usa useState per `query`, `risultati` e (opzionale) `messaggio`
- * - Gestisci il caso "nessun risultato" e gli errori dell'API
+ * - Gestisci il caso "nessun risultato" e gli errori dell'API, mostrandoli
+ *   con <Message tipo="error">...</Message> o tipo="info"
  * - Se il Poster è "N/A", mostra un placeholder
  */
-import React, { useState } from 'react';
-import { searchMovies } from '../../scripts/omdbApi.js';
-import { aggiungiPreferito, isPreferito } from '../../scripts/preferiti.js';
-
 function Cerca() {
   const [query, setQuery] = useState('');
   const [risultati, setRisultati] = useState([]);
+  const [messaggio, setMessaggio] = useState(null); // { tipo: 'error' | 'info', testo: '...' } oppure null
 
   async function handleCerca(e) {
     e.preventDefault();
     // TODO: chiamare searchMovies(query) e salvare l'array in setRisultati
-    // TODO: gestire "nessun film trovato" ed eventuali errori
+    // TODO: gestire "nessun film trovato" ed eventuali errori con setMessaggio(...)
   }
 
   function handleAggiungi(film) {
@@ -40,57 +50,25 @@ function Cerca() {
 
   return (
     <>
-      {/* BARRA DI RICERCA */}
-      <form className="search-section" onSubmit={handleCerca}>
-        <input
-          type="text"
-          className="search-bar"
-          placeholder="Cerca un film (es: Matrix, Inception, Titanic)..."
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-        />
-        <button type="submit" className="search-btn">
-          Cerca
-        </button>
-      </form>
+      <SearchBar
+        value={query}
+        onChange={(e) => setQuery(e.target.value)}
+        onSubmit={handleCerca}
+        placeholder="Cerca un film (es: Matrix, Inception, Titanic)..."
+      />
+
+      {messaggio && <Message tipo={messaggio.tipo}>{messaggio.testo}</Message>}
 
       {/* TABELLA RISULTATI: mostrata solo se ci sono risultati */}
       {risultati.length > 0 && (
-        <div className="results-section">
-          <h2>Risultati della Ricerca</h2>
-          <table>
-            <thead>
-              <tr>
-                <th>Poster</th>
-                <th>Titolo</th>
-                <th>Anno</th>
-                <th>Tipo</th>
-                <th>Azioni</th>
-              </tr>
-            </thead>
-            <tbody>
-              {risultati.map((film) => (
-                <tr key={film.imdbID}>
-                  <td>
-                    <img className="movie-poster" src={film.Poster} alt={film.Title} />
-                  </td>
-                  <td>{film.Title}</td>
-                  <td>{film.Year}</td>
-                  <td>{film.Type}</td>
-                  <td>
-                    <button
-                      className="btn btn-add"
-                      onClick={() => handleAggiungi(film)}
-                      disabled={isPreferito(film.imdbID)}
-                    >
-                      Aggiungi ai Preferiti
-                    </button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+        <MovieTable
+          titolo="Risultati della Ricerca"
+          film={risultati}
+          azioneLabel="Aggiungi ai Preferiti"
+          azioneClasse="btn btn-add"
+          onAzione={handleAggiungi}
+          azioneDisabled={(film) => isPreferito(film.imdbID)}
+        />
       )}
     </>
   );
